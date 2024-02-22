@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:44:36 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/22 19:37:49 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:52:08 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 /*void	ft_leaks(void)
 {
-	system("leaks -q a.out");
+	system("leaks -q fdf");
 }
 atexit(ft_leaks);*/
 
