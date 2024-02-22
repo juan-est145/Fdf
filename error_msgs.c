@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf.h                                              :+:      :+:    :+:   */
+/*   error_msgs.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/22 19:33:41 by juestrel         ###   ########.fr       */
+/*   Created: 2024/02/22 19:10:47 by juestrel          #+#    #+#             */
+/*   Updated: 2024/02/22 19:35:17 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FDF_H
-# define FDF_H
-# include <stdio.h>
+#include "MLX42/include/MLX42/MLX42.h"
+#include "Ultimate_Libft/libft.h"
+#include "fdf.h"
 
-typedef enum e_error_msg
+void	ft_print_error_msg(t_error_msg type_of_error)
 {
-	ARGC_INVALID,
-	INVALID_FILE_EXTENSION
-}		t_error_msg;
-
-int		get_rgba(int r, int g, int b, int a);
-void	ft_print_error_msg(t_error_msg type_of_error);
-#endif
+	if (type_of_error == ARGC_INVALID)
+		ft_printf("You need to provide the url of the map as an argument\n");
+	else if (type_of_error == INVALID_FILE_EXTENSION)
+		ft_printf("Invalid file extension\n");
+	exit(1);
+}

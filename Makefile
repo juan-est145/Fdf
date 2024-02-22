@@ -3,7 +3,8 @@ LIBFT_PATH = Ultimate_Libft
 NAME = fdf
 
 SCRS = main.c\
-functions-for-colors.c\
+functions_for_colors.c\
+error_msgs.c\
 
 OBJS = $(SCRS:.c=.o)
 
