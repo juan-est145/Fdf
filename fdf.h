@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/22 19:33:41 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/22 19:37:41 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 typedef enum e_error_msg
 {
-	ARGC_INVALID,
+	INVALID_ARGC,
 	INVALID_FILE_EXTENSION
 }		t_error_msg;
 
