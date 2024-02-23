@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:19:24 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 16:01:00 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:34:22 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,3 +58,24 @@ static void	process_map_file(t_map_line_read **head, int fd)
 		add_line_node_to_list(head, new_node);
 	}
 }
+//Tester function for checking that the read is successful
+
+/*static void	tester(t_map_line_read **head); // Erase later
+
+static void	tester(t_map_line_read **head)
+{
+	unsigned int	i;
+
+	while (*head != NULL)
+	{
+		i = 0;
+		while ((*head)->coord[i] != NULL)
+		{
+			ft_printf("%s", (*head)->coord[i]);
+			ft_printf(" ");
+			i++;
+		}
+		*head = (*head)->next;
+	}
+}
+*/
