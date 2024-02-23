@@ -6,6 +6,7 @@ SCRS = main.c\
 functions_for_colors.c\
 error_msgs.c\
 load_matrix.c\
+struct_utils.c\
 
 OBJS = $(SCRS:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:10:47 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 13:26:48 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:28:49 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "Ultimate_Libft/libft.h"
 #include "fdf.h"
 
-void	ft_print_error_msg(t_error_msg type_of_error)
+void	print_error_msg(t_error_msg type_of_error)
 {
 	if (type_of_error == INVALID_ARGC)
 		ft_printf("You need to provide the url of the map as an argument\n");
@@ -22,5 +22,7 @@ void	ft_print_error_msg(t_error_msg type_of_error)
 		ft_printf("Invalid file extension\n");
 	else if (type_of_error == FAILURE_TO_OPEN_FILE)
 		ft_printf("Couldn't open file, ensure that the path is correct\n");
+	else if (type_of_error == MALLOC_ERROR)
+		ft_printf("Error allocating memmory, exiting program\n");
 	exit(1);
 }

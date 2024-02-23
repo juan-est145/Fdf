@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:44:36 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 13:27:53 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/23 15:19:04 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,10 @@ int	main(int argc, char *argv[])
 {
 	(void)argv;
 	if (argc != 2)
-		ft_print_error_msg(INVALID_ARGC);
+		print_error_msg(INVALID_ARGC);
 	if (ft_parse_url(argv[1]) == false)
-		ft_print_error_msg(INVALID_FILE_EXTENSION);
-	ft_load_matrix(argv[1]);
+		print_error_msg(INVALID_FILE_EXTENSION);
+	load_matrix(argv[1]);
 	return (0);
 }
 
