@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:19:24 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 19:29:23 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:44:31 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 static void	process_map_file(t_map_line_read **head, int fd,
 				unsigned int *y_counter);
 static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map);
+
+static void	second_tester(t_coord **map, unsigned int x_length, unsigned int y_length); // Erase later
 
 void	load_matrix(char *path)
 {
@@ -79,7 +81,7 @@ static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map)
 
 	temp = *head;
 	y = 0;
-	while (temp->next != NULL)
+	while (temp != NULL)
 	{
 		x = 0;
 		number_str_index = 0;
@@ -94,6 +96,7 @@ static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map)
 		y++;
 	}
 	free_map_line(head);
+	second_tester(map, 10, 10);//Erase later
 }
 
 // Tester function for checking that the read is successful
@@ -116,3 +119,25 @@ static void	tester(t_map_line_read **head)
 	}
 }
 */
+
+
+
+static void	second_tester(t_coord **map, unsigned int x_length, unsigned int y_length)
+{
+	unsigned int	x;
+	unsigned int	y;
+
+	y = 0;
+	while (y < y_length)
+	{
+		x = 0;
+		while (x < x_length)
+		{
+			ft_printf("%i", map[y][x].value_of_z);
+			ft_printf(" ");
+			x++;
+		}
+		y++;
+		ft_printf("\n");
+	}
+}
