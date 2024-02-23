@@ -6,15 +6,13 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:19:24 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 19:44:31 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/23 19:58:12 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "MLX42/include/MLX42/MLX42.h"
 #include "Ultimate_Libft/libft.h"
 #include "fdf.h"
-
-// Need to malloc the nodes and add functions to add the nodes to a list
 
 static void	process_map_file(t_map_line_read **head, int fd,
 				unsigned int *y_counter);
@@ -85,8 +83,8 @@ static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map)
 	{
 		x = 0;
 		number_str_index = 0;
-		map[y] = (t_coord *)malloc(sizeof(t_coord) * temp->x_length);
-		while (temp->coord[number_str_index] != NULL && temp->coord[number_str_index][0] != '\n') //Change condition (index is good)
+		map[y] = (t_coord *)malloc(sizeof(t_coord) * temp->x_length); //Consider using calloc (IMPORTANT for tests)
+		while (temp->coord[number_str_index] != NULL && temp->coord[number_str_index][0] != '\n')
 		{
 			map[y][x].value_of_z = ft_atoi(temp->coord[number_str_index]); //Need to check for optional colors
 			x++;
