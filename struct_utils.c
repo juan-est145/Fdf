@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:31:54 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 16:26:53 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:03:31 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ unsigned int	get_x_length(t_map_line_read *node)
 	unsigned int	i;
 
 	i = 0;
-	while (node->coord[i][0] != '\n')
+	while (node->coord[i] != NULL && ft_strncmp(node->coord[i], "\n", 1) != 0)
 		i++;
 	return (i);
 }
