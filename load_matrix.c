@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:19:24 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 17:34:22 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/23 18:34:40 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,26 @@
 
 // Need to malloc the nodes and add functions to add the nodes to a list
 
-static void	process_map_file(t_map_line_read **head, int fd);
+static void	process_map_file(t_map_line_read **head, int fd,
+				unsigned int *y_counter);
 
 void	load_matrix(char *path)
 {
 	int				fd;
 	t_map_line_read	*head;
+	unsigned int	y_counter;
 
 	head = NULL;
+	y_counter = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		print_error_msg(FAILURE_TO_OPEN_FILE);
-	process_map_file(&head, fd);
+	process_map_file(&head, fd, &y_counter);
 	close(fd);
 }
 
-static void	process_map_file(t_map_line_read **head, int fd)
+static void	process_map_file(t_map_line_read **head, int fd,
+		unsigned int *y_counter)
 {
 	t_map_line_read	*new_node;
 
@@ -56,9 +60,10 @@ static void	process_map_file(t_map_line_read **head, int fd)
 		}
 		new_node->x_length = get_x_length(new_node);
 		add_line_node_to_list(head, new_node);
+		(*y_counter)++;
 	}
 }
-//Tester function for checking that the read is successful
+// Tester function for checking that the read is successful
 
 /*static void	tester(t_map_line_read **head); // Erase later
 
