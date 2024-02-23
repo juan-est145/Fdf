@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 15:59:41 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/23 17:59:46 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,20 @@ typedef struct s_map_line_read
 	unsigned int			x_length;
 	struct s_map_line_read	*next;
 }							t_map_line_read;
+
+typedef struct s_coord
+{
+	int						value_of_z;
+	bool					color_present;
+	int						color;
+}							t_coord;
+
+typedef struct s_map_data
+{
+	t_coord					**map;
+	unsigned int			height;
+	unsigned int			width;
+}							t_map_data;
 
 int							get_rgba(int r, int g, int b, int a);
 void						print_error_msg(t_error_msg type_of_error);
