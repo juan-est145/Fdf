@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:19:24 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 13:52:12 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/23 13:56:06 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include "Ultimate_Libft/libft.h"
 #include "fdf.h"
 #include <fcntl.h>
+
+//Need to malloc the nodes and add functions to add the nodes to a list
 
 void	ft_load_matrix(char *path)
 {
