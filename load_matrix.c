@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:19:24 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/24 19:46:41 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/24 19:53:22 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,18 +128,18 @@ static void	second_tester(t_coord **map, unsigned int y_length)
 	unsigned int	y;
 
 	y = 0;
+	x = 0;
 	while (y < y_length)
 	{
-		x = 0;
-		while (1 == 1)
+		ft_printf("%i", map[y][x].value_of_z);
+		ft_printf(" ");
+		if (map[y][x].end_of_row == true)
 		{
-			ft_printf("%i", map[y][x].value_of_z);
-			ft_printf(" ");
-			if (map[y][x].end_of_row == true)
-				break;
-			x++;
+			x = 0;
+			y++;
+			ft_printf("\n");
 		}
-		y++;
-		ft_printf("\n");
+		else
+			x++;
 	}
 }
