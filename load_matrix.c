@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:19:24 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 19:58:12 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/24 19:46:41 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	process_map_file(t_map_line_read **head, int fd,
 				unsigned int *y_counter);
 static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map);
 
-static void	second_tester(t_coord **map, unsigned int x_length, unsigned int y_length); // Erase later
+static void	second_tester(t_coord **map, unsigned int y_length); // Erase later
 
 void	load_matrix(char *path)
 {
@@ -83,18 +83,20 @@ static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map)
 	{
 		x = 0;
 		number_str_index = 0;
-		map[y] = (t_coord *)malloc(sizeof(t_coord) * temp->x_length); //Consider using calloc (IMPORTANT for tests)
+		map[y] = (t_coord *)malloc(sizeof(t_coord) * temp->x_length);
 		while (temp->coord[number_str_index] != NULL && temp->coord[number_str_index][0] != '\n')
 		{
 			map[y][x].value_of_z = ft_atoi(temp->coord[number_str_index]); //Need to check for optional colors
+			map[y][x].end_of_row = false;
 			x++;
 			number_str_index++;
 		}
+		map[y][x - 1].end_of_row = true;
 		temp = temp->next;
 		y++;
 	}
 	free_map_line(head);
-	second_tester(map, 10, 10);//Erase later
+	second_tester(map, 10);//Erase later
 }
 
 // Tester function for checking that the read is successful
@@ -120,7 +122,7 @@ static void	tester(t_map_line_read **head)
 
 
 
-static void	second_tester(t_coord **map, unsigned int x_length, unsigned int y_length)
+static void	second_tester(t_coord **map, unsigned int y_length)
 {
 	unsigned int	x;
 	unsigned int	y;
@@ -129,10 +131,12 @@ static void	second_tester(t_coord **map, unsigned int x_length, unsigned int y_l
 	while (y < y_length)
 	{
 		x = 0;
-		while (x < x_length)
+		while (1 == 1)
 		{
 			ft_printf("%i", map[y][x].value_of_z);
 			ft_printf(" ");
+			if (map[y][x].end_of_row == true)
+				break;
 			x++;
 		}
 		y++;

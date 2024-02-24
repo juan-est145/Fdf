@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 17:59:46 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/24 19:38:48 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_coord
 	int						value_of_z;
 	bool					color_present;
 	int						color;
+	bool					end_of_row;
 }							t_coord;
 
 typedef struct s_map_data
