@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 13:56:23 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 17:16:28 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 17:57:38 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_for_colors(char *matrix_string, t_coord map)
 	{
 		map.color_present = true;
 		rgb = color_conversion(needle + 3);
-		map.color = get_rgba(rgb[0], rgb[1], rgb[2], 255);
+		map.color = get_rgba(rgb[0], rgb[1], rgb[2], rgb[0] + rgb[1] + rgb[2]);
 	}
 	else
 		map.color_present = false;
