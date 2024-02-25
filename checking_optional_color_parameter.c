@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 13:56:23 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 15:44:52 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 16:33:05 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	check_for_colors(char *matrix_string, t_coord map)
 	if (needle != NULL)
 	{
 		map.color_present = true;
-		rgb = color_conversion(matrix_string + 3);
+		rgb = color_conversion(needle + 3);
 		map.color = get_rgba(rgb[0], rgb[1], rgb[2], 255);
 	}
 	else
@@ -44,6 +44,9 @@ static int	*color_conversion(char *color_string)
 	unsigned int	b_index;
 
 	b_index = 0;
+	rgb_bytes[0] = 0;
+	rgb_bytes[1] = 0;
+	rgb_bytes[2] = 0;
 	if (ft_strlen(color_string) == 6)
 		return (long_color_conversion(color_string, rgb_bytes, b_index));
 	else
@@ -52,14 +55,17 @@ static int	*color_conversion(char *color_string)
 
 static int	hex_converter(char hex_number)
 {
+	int	result;
+
+	result = 0;
 	if (hex_number >= '0' && hex_number <= '9')
-		return (hex_number - '0');
+		return (result = hex_number - '0', result);
 	else if (hex_number >= 'A' && hex_number >= 'F')
-		return ((hex_number - 'A') + 10);
+		return (result = (hex_number - 'A') + 10, result);
 	else if (hex_number >= 'a' && hex_number >= 'f')
-		return ((hex_number - 'a') + 10);
+		return (result = (hex_number - 'a') + 10, result);
 	else
-		return (0);
+		return (result);
 }
 
 static int	*long_color_conversion(char *color_string, int *rgb_bytes,
@@ -70,10 +76,12 @@ static int	*long_color_conversion(char *color_string, int *rgb_bytes,
 
 	f_nibble_index = 0;
 	s_nibble_index = 1;
+	ft_printf("%s\n", color_string);
 	while (f_nibble_index != 6 && s_nibble_index != 7)
 	{
 		rgb_bytes[b_index] = hex_converter(color_string[s_nibble_index])
-			+ hex_converter(color_string[f_nibble_index] * 16);
+			+ (16 * hex_converter(color_string[f_nibble_index]));
+		ft_printf("%s\n", color_string);
 		f_nibble_index++;
 		s_nibble_index++;
 		b_index++;
@@ -88,9 +96,6 @@ static int	*short_color_conversion(char *color_string, int *rgb_bytes,
 	unsigned int	f_nibble_index;
 	unsigned int	s_nibble_index;
 
-	rgb_bytes[0] = 0;
-	rgb_bytes[1] = 0;
-	rgb_bytes[2] = 0;
 	str_len = ft_strlen(color_string);
 	f_nibble_index = 0;
 	s_nibble_index = 1;
