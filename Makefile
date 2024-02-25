@@ -7,6 +7,7 @@ functions_for_colors.c\
 error_msgs.c\
 load_matrix.c\
 struct_utils.c\
+checking_optional_color_parameter.c\
 
 OBJS = $(SCRS:.c=.o)
 

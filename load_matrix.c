@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:19:24 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/24 19:53:22 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 13:58:48 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@
 static void	process_map_file(t_map_line_read **head, int fd,
 				unsigned int *y_counter);
 static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map);
-
-static void	second_tester(t_coord **map, unsigned int y_length); // Erase later
 
 void	load_matrix(char *path)
 {
@@ -33,11 +31,12 @@ void	load_matrix(char *path)
 	if (fd < 0)
 		print_error_msg(FAILURE_TO_OPEN_FILE);
 	process_map_file(&head, fd, &y_counter);
+	close(fd);
 	map = (t_coord **)malloc(sizeof(t_coord *) * y_counter);
 	if (map == NULL)
 		malloc_error(&head);
 	create_matrix_of_coord(&head, map);
-	close(fd);
+	free_map_line(&head);
 }
 
 static void	process_map_file(t_map_line_read **head, int fd,
@@ -84,9 +83,11 @@ static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map)
 		x = 0;
 		number_str_index = 0;
 		map[y] = (t_coord *)malloc(sizeof(t_coord) * temp->x_length);
-		while (temp->coord[number_str_index] != NULL && temp->coord[number_str_index][0] != '\n')
+		while (temp->coord[number_str_index] != NULL
+			&& temp->coord[number_str_index][0] != '\n')
 		{
-			map[y][x].value_of_z = ft_atoi(temp->coord[number_str_index]); //Need to check for optional colors
+			map[y][x].value_of_z = ft_atoi(temp->coord[number_str_index]);
+			check_for_colors(temp->coord[number_str_index], map[y][x]);
 			map[y][x].end_of_row = false;
 			x++;
 			number_str_index++;
@@ -95,9 +96,8 @@ static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map)
 		temp = temp->next;
 		y++;
 	}
-	free_map_line(head);
-	second_tester(map, 10);//Erase later
 }
+
 
 // Tester function for checking that the read is successful
 /*static void	tester(t_map_line_read **head); // Erase later
@@ -120,7 +120,8 @@ static void	tester(t_map_line_read **head)
 }
 */
 
-
+/*static void	second_tester(t_coord **map, unsigned int y_length);
+		// Erase later
 
 static void	second_tester(t_coord **map, unsigned int y_length)
 {
@@ -143,3 +144,4 @@ static void	second_tester(t_coord **map, unsigned int y_length)
 			x++;
 	}
 }
+*/
