@@ -6,13 +6,15 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:31:54 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 19:31:18 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 20:28:59 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../MLX42/include/MLX42/MLX42.h"
 #include "../Ultimate_Libft/libft.h"
 #include "fdf.h"
+
+static void		free_strings_of_split(char **split_array);
 
 void	add_line_node_to_list(t_map_line_read **head, t_map_line_read *new)
 {
@@ -59,6 +61,7 @@ void	free_map_line(t_map_line_read **head)
 		}
 		if (temp->coord != NULL)
 		{
+			free_strings_of_split(temp->coord);
 			free(temp->coord);
 			temp->coord = NULL;
 		}
@@ -66,15 +69,17 @@ void	free_map_line(t_map_line_read **head)
 	}
 }
 
-void	malloc_error(t_map_line_read **head, t_coord **map,
-		t_map_data **map_data)
+static void	free_strings_of_split(char **split_array)
 {
-	free_map_line(head);
-	if (map != NULL)
-		free(map);
-	if (*map_data != NULL)
-		free(*map_data);
-	print_error_msg(MALLOC_ERROR);
+	unsigned int	i;
+
+	i = 0;
+	while (split_array[i] != NULL)
+	{
+		free(split_array[i]);
+		split_array[i] = NULL;
+		i++;
+	}
 }
 
 unsigned int	get_x_length(t_map_line_read *node)
