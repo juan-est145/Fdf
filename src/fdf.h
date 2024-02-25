@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 19:26:22 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:45:51 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_map_data
 
 void						print_error_msg(t_error_msg type_of_error);
 unsigned int				load_matrix(char *path, t_map_data **map_data,
-								t_coord **map);
+								t_coord ***map);
 void						check_for_colors(char *matrix_string, t_coord map);
 
 // Auxilary functions for my different structs

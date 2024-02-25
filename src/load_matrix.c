@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:19:24 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 19:31:02 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 20:03:30 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ static int		process_map_file(t_map_line_read **head, int fd,
 					unsigned int *y_counter);
 static void		create_matrix_of_coord(t_map_line_read **head, t_coord **map,
 					t_map_data **map_data);
-static void		update_info(t_coord map, char *matrix_string);
+static void		update_info(t_coord *map, char *matrix_string);
 static void		free_map_columns(t_coord **map,
 					unsigned int row_where_malloc_failed);
 
-unsigned int	load_matrix(char *path, t_map_data **map_data, t_coord **map)
+unsigned int	load_matrix(char *path, t_map_data **map_data, t_coord ***map)
 {
 	int				fd;
 	t_map_line_read	*head;
@@ -34,12 +34,12 @@ unsigned int	load_matrix(char *path, t_map_data **map_data, t_coord **map)
 	if (fd < 0)
 		print_error_msg(FAILURE_TO_OPEN_FILE);
 	if (process_map_file(&head, fd, &y_counter) == -1)
-		malloc_error(&head, map, map_data);
+		malloc_error(&head, *map, map_data);
 	close(fd);
-	map = (t_coord **)malloc(sizeof(t_coord *) * y_counter);
-	if (map == NULL)
-		malloc_error(&head, map, map_data);
-	create_matrix_of_coord(&head, map, map_data);
+	*map = (t_coord **)malloc(sizeof(t_coord *) * y_counter);
+	if (*map == NULL)
+		malloc_error(&head, *map, map_data);
+	create_matrix_of_coord(&head, *map, map_data);
 	free_map_line(&head);
 	return (y_counter);
 }
@@ -89,7 +89,7 @@ static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map,
 		}
 		while (temp->coord[x] != NULL && temp->coord[x][0] != '\n')
 		{
-			update_info(map[y][x], temp->coord[x]);
+			update_info(&map[y][x], temp->coord[x]);
 			check_for_colors(temp->coord[x], map[y][x]);
 			x++;
 		}
@@ -99,10 +99,10 @@ static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map,
 	}
 }
 
-static void	update_info(t_coord map, char *matrix_string)
+static void	update_info(t_coord *map, char *matrix_string)
 {
-	map.value_of_z = ft_atoi(matrix_string);
-	map.end_of_row = false;
+	(*map).value_of_z = ft_atoi(matrix_string);
+	(*map).end_of_row = false;
 }
 
 static void	free_map_columns(t_coord **map,
