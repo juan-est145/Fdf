@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 13:56:23 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 16:33:05 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 16:36:10 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,11 +79,11 @@ static int	*long_color_conversion(char *color_string, int *rgb_bytes,
 	ft_printf("%s\n", color_string);
 	while (f_nibble_index != 6 && s_nibble_index != 7)
 	{
-		rgb_bytes[b_index] = hex_converter(color_string[s_nibble_index])
-			+ (16 * hex_converter(color_string[f_nibble_index]));
+		rgb_bytes[b_index] = hex_converter(color_string[s_nibble_index]) + (16
+				* hex_converter(color_string[f_nibble_index]));
 		ft_printf("%s\n", color_string);
-		f_nibble_index++;
-		s_nibble_index++;
+		f_nibble_index += 2;
+		s_nibble_index += 2;
 		b_index++;
 	}
 	return (rgb_bytes);
@@ -106,8 +106,8 @@ static int	*short_color_conversion(char *color_string, int *rgb_bytes,
 		{
 			rgb_bytes[b_index] = hex_converter(color_string[s_nibble_index])
 				+ hex_converter(color_string[f_nibble_index] * 16);
-			f_nibble_index++;
-			s_nibble_index++;
+			f_nibble_index += 2;
+			s_nibble_index += 2;
 			b_index++;
 		}
 	}
