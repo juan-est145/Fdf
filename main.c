@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:44:36 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 17:09:47 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 18:38:35 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,22 @@ static bool	ft_parse_url(char *url);
 
 int	main(int argc, char *argv[])
 {
+	t_coord		**coord;
+	t_map_data	*map_data;
+
+	coord = NULL;
 	if (argc != 2)
 		print_error_msg(INVALID_ARGC);
 	if (ft_parse_url(argv[1]) == false)
 		print_error_msg(INVALID_FILE_EXTENSION);
-	load_matrix(argv[1]);
+	map_data = (t_map_data *)malloc(sizeof(t_map_data));
+	if (map_data == NULL)
+	{
+		free(map_data);
+		print_error_msg(MALLOC_ERROR);
+	}
+	map_data->height = load_matrix(argv[1]);
+	map_data->map = coord;
 	return (0);
 }
 

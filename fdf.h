@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 13:57:58 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 18:55:44 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,10 @@ typedef struct s_map_data
 {
 	t_coord					**map;
 	unsigned int			height;
-	unsigned int			width;
 }							t_map_data;
 
 void						print_error_msg(t_error_msg type_of_error);
-void						load_matrix(char *path);
+unsigned int				load_matrix(char *path);
 void						check_for_colors(char *matrix_string, t_coord map);
 
 // Auxilary functions for my different structs
@@ -55,7 +54,8 @@ void						add_line_node_to_list(t_map_line_read **head,
 								t_map_line_read *new);
 t_map_line_read				*create_line_node(void);
 void						free_map_line(t_map_line_read **head);
-void						malloc_error(t_map_line_read **head);
+void						malloc_error(t_map_line_read **head, t_coord **map,
+								t_map_data **map_data);
 unsigned int				get_x_length(t_map_line_read *node);
 
 // Functions for colors

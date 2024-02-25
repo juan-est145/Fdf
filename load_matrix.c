@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:19:24 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 13:58:48 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:12:11 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,32 +14,37 @@
 #include "Ultimate_Libft/libft.h"
 #include "fdf.h"
 
-static void	process_map_file(t_map_line_read **head, int fd,
-				unsigned int *y_counter);
-static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map);
+static int		process_map_file(t_map_line_read **head, int fd,
+					unsigned int *y_counter);
+static void		create_matrix_of_coord(t_map_line_read **head, t_coord **map,
+					t_map_data **map_data);
+static void		update_info(t_coord map, char *matrix_string);
+static void		free_map_columns(t_coord **map,
+					unsigned int row_where_malloc_failed);
 
-void	load_matrix(char *path)
+unsigned int	load_matrix(char *path, t_map_data **map_data, t_coord **map)
 {
 	int				fd;
 	t_map_line_read	*head;
 	unsigned int	y_counter;
-	t_coord			**map;
 
 	head = NULL;
 	y_counter = 0;
 	fd = open(path, O_RDONLY);
 	if (fd < 0)
 		print_error_msg(FAILURE_TO_OPEN_FILE);
-	process_map_file(&head, fd, &y_counter);
+	if (process_map_file(&head, fd, &y_counter) == -1)
+		malloc_error(&head, map, map_data);
 	close(fd);
 	map = (t_coord **)malloc(sizeof(t_coord *) * y_counter);
 	if (map == NULL)
-		malloc_error(&head);
-	create_matrix_of_coord(&head, map);
+		malloc_error(&head, map, map_data);
+	create_matrix_of_coord(&head, map, map_data);
 	free_map_line(&head);
+	return (y_counter);
 }
 
-static void	process_map_file(t_map_line_read **head, int fd,
+static int	process_map_file(t_map_line_read **head, int fd,
 		unsigned int *y_counter)
 {
 	t_map_line_read	*new_node;
@@ -48,49 +53,45 @@ static void	process_map_file(t_map_line_read **head, int fd,
 	{
 		new_node = create_line_node();
 		if (new_node == NULL)
-			malloc_error(head);
+			return (-1);
 		new_node->file_line = get_next_line(fd);
 		if (new_node->file_line == NULL)
-		{
-			free(new_node);
-			break ;
-		}
+			return (free(new_node), 0);
 		new_node->coord = ft_split(new_node->file_line, ' ');
 		free(new_node->file_line);
 		new_node->file_line = NULL;
 		if (new_node->coord == NULL)
-		{
-			free(new_node);
-			malloc_error(head);
-		}
+			return (free(new_node), -1);
 		new_node->x_length = get_x_length(new_node);
 		add_line_node_to_list(head, new_node);
 		(*y_counter)++;
 	}
+	return (0);
 }
 
-static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map)
+static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map,
+		t_map_data **map_data)
 {
 	t_map_line_read	*temp;
 	unsigned int	y;
 	unsigned int	x;
-	unsigned int	number_str_index;
 
 	temp = *head;
 	y = 0;
 	while (temp != NULL)
 	{
 		x = 0;
-		number_str_index = 0;
 		map[y] = (t_coord *)malloc(sizeof(t_coord) * temp->x_length);
-		while (temp->coord[number_str_index] != NULL
-			&& temp->coord[number_str_index][0] != '\n')
+		if (map[y] == NULL)
 		{
-			map[y][x].value_of_z = ft_atoi(temp->coord[number_str_index]);
-			check_for_colors(temp->coord[number_str_index], map[y][x]);
-			map[y][x].end_of_row = false;
+			free_map_columns(map, y);
+			malloc_error(head, map, map_data);
+		}
+		while (temp->coord[x] != NULL && temp->coord[x][0] != '\n')
+		{
+			update_info(map[y][x], temp->coord[x]);
+			check_for_colors(temp->coord[x], map[y][x]);
 			x++;
-			number_str_index++;
 		}
 		map[y][x - 1].end_of_row = true;
 		temp = temp->next;
@@ -98,6 +99,26 @@ static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map)
 	}
 }
 
+static void	update_info(t_coord map, char *matrix_string)
+{
+	map.value_of_z = ft_atoi(matrix_string);
+	map.end_of_row = false;
+}
+
+static void	free_map_columns(t_coord **map,
+		unsigned int row_where_malloc_failed)
+{
+	if (row_where_malloc_failed > 0)
+	{
+		row_where_malloc_failed -= 1;
+		while (row_where_malloc_failed > 0)
+		{
+			free(map[row_where_malloc_failed]);
+			row_where_malloc_failed--;
+		}
+		free(map[row_where_malloc_failed]);
+	}
+}
 
 // Tester function for checking that the read is successful
 /*static void	tester(t_map_line_read **head); // Erase later

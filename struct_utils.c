@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:31:54 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 17:03:31 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 18:56:17 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,14 @@ void	free_map_line(t_map_line_read **head)
 	}
 }
 
-void	malloc_error(t_map_line_read **head)
+void	malloc_error(t_map_line_read **head, t_coord **map,
+		t_map_data **map_data)
 {
 	free_map_line(head);
+	if (map != NULL)
+		free(map);
+	if (*map_data != NULL)
+		free(*map_data);
 	print_error_msg(MALLOC_ERROR);
 }
 

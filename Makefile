@@ -8,6 +8,7 @@ error_msgs.c\
 load_matrix.c\
 struct_utils.c\
 checking_optional_color_parameter.c\
+struct_utils2.c\
 
 OBJS = $(SCRS:.c=.o)
 
