@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 13:56:23 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 17:01:03 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 17:16:28 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,9 @@ static int	hex_converter(char hex_number)
 	result = 0;
 	if (hex_number >= '0' && hex_number <= '9')
 		return (result = hex_number - '0', result);
-	else if (hex_number >= 'A' && hex_number >= 'F')
+	else if (hex_number >= 'A' && hex_number <= 'F')
 		return (result = (hex_number - 'A') + 10, result);
-	else if (hex_number >= 'a' && hex_number >= 'f')
+	else if (hex_number >= 'a' && hex_number <= 'f')
 		return (result = (hex_number - 'a') + 10, result);
 	else
 		return (result);
@@ -103,7 +103,7 @@ static int	*short_color_conversion(char *color_string, int *rgb_bytes,
 			&& color_string[s_nibble_index] != '\0')
 		{
 			rgb_bytes[b_index] = hex_converter(color_string[s_nibble_index])
-				+ hex_converter(color_string[f_nibble_index] * 16);
+				+ (16 * hex_converter(color_string[f_nibble_index]));
 			f_nibble_index += 2;
 			s_nibble_index += 2;
 			b_index++;
