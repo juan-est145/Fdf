@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:44:36 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 17:57:37 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 17:09:47 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,9 @@ static bool	ft_parse_url(char *url)
 	return (true);
 }
 
-/*mlx_t	*mlx_start;
+/*(void)argc;
+(void)argv;
+	mlx_t	*mlx_start;
 	mlx_image_t *img;
 
 	mlx_set_setting(MLX_STRETCH_IMAGE, true);
