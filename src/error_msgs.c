@@ -6,12 +6,12 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:10:47 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/23 15:28:49 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:30:38 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/include/MLX42/MLX42.h"
-#include "Ultimate_Libft/libft.h"
+#include "../MLX42/include/MLX42/MLX42.h"
+#include "../Ultimate_Libft/libft.h"
 #include "fdf.h"
 
 void	print_error_msg(t_error_msg type_of_error)

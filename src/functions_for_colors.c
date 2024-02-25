@@ -6,12 +6,12 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:29:52 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 17:25:30 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:30:55 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/include/MLX42/MLX42.h"
-#include "Ultimate_Libft/libft.h"
+#include "../MLX42/include/MLX42/MLX42.h"
+#include "../Ultimate_Libft/libft.h"
 #include "fdf.h"
 
 // This function allows to return the color that you want using rgba encoding.

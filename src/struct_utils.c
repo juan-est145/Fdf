@@ -6,12 +6,12 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 15:31:54 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 18:56:17 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:31:18 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/include/MLX42/MLX42.h"
-#include "Ultimate_Libft/libft.h"
+#include "../MLX42/include/MLX42/MLX42.h"
+#include "../Ultimate_Libft/libft.h"
 #include "fdf.h"
 
 void	add_line_node_to_list(t_map_line_read **head, t_map_line_read *new)

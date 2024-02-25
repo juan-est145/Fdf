@@ -6,12 +6,12 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:44:36 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 18:38:35 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:33:47 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/include/MLX42/MLX42.h"
-#include "Ultimate_Libft/libft.h"
+#include "../MLX42/include/MLX42/MLX42.h"
+#include "../Ultimate_Libft/libft.h"
 #include "fdf.h"
 
 /*void	ft_leaks(void)
@@ -38,8 +38,9 @@ int	main(int argc, char *argv[])
 		free(map_data);
 		print_error_msg(MALLOC_ERROR);
 	}
-	map_data->height = load_matrix(argv[1]);
+	map_data->height = load_matrix(argv[1], &map_data, coord);
 	map_data->map = coord;
+	destroy_map_data(coord, &map_data);
 	return (0);
 }
 

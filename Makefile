@@ -1,18 +1,19 @@
 LIBFT_PATH = Ultimate_Libft
+SRC_PATH = src
 
 NAME = fdf
 
-SCRS = main.c\
-functions_for_colors.c\
-error_msgs.c\
-load_matrix.c\
-struct_utils.c\
-checking_optional_color_parameter.c\
-struct_utils2.c\
+SCRS = $(SRC_PATH)/main.c\
+$(SRC_PATH)/functions_for_colors.c\
+$(SRC_PATH)/error_msgs.c\
+$(SRC_PATH)/load_matrix.c\
+$(SRC_PATH)/struct_utils.c\
+$(SRC_PATH)/checking_optional_color_parameter.c\
+$(SRC_PATH)/struct_utils2.c\
 
 OBJS = $(SCRS:.c=.o)
 
-HEADER = fdf.h
+HEADER = $(SRC_PATH)/fdf.h
 
 COMPILER = $(CC)
 

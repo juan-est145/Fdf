@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Checking_optional_color_parameter.c                :+:      :+:    :+:   */
+/*   checking_optional_color_parameter.c                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 13:56:23 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 17:57:38 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 19:30:23 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "MLX42/include/MLX42/MLX42.h"
-#include "Ultimate_Libft/libft.h"
+#include "../MLX42/include/MLX42/MLX42.h"
+#include "../Ultimate_Libft/libft.h"
 #include "fdf.h"
 
 static int	*color_conversion(char *color_string);
