@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 13:56:23 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 19:30:23 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 20:33:42 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	*long_color_conversion(char *color_string, int *rgb_bytes,
 static int	*short_color_conversion(char *color_string, int *rgb_bytes,
 				unsigned int b_index);
 
-void	check_for_colors(char *matrix_string, t_coord map)
+void	check_for_colors(char *matrix_string, t_coord *map)
 {
 	char	*needle;
 	int		*rgb;
@@ -30,12 +30,12 @@ void	check_for_colors(char *matrix_string, t_coord map)
 	rgb = NULL;
 	if (needle != NULL)
 	{
-		map.color_present = true;
+		map->color_present = true;
 		rgb = color_conversion(needle + 3);
-		map.color = get_rgba(rgb[0], rgb[1], rgb[2], rgb[0] + rgb[1] + rgb[2]);
+		map->color = get_rgba(rgb[0], rgb[1], rgb[2], rgb[0] + rgb[1] + rgb[2]);
 	}
 	else
-		map.color_present = false;
+		map->color_present = false;
 }
 
 static int	*color_conversion(char *color_string)

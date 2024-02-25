@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/23 13:19:24 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 20:03:30 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 20:32:48 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void	create_matrix_of_coord(t_map_line_read **head, t_coord **map,
 		while (temp->coord[x] != NULL && temp->coord[x][0] != '\n')
 		{
 			update_info(&map[y][x], temp->coord[x]);
-			check_for_colors(temp->coord[x], map[y][x]);
+			check_for_colors(temp->coord[x], &map[y][x]);
 			x++;
 		}
 		map[y][x - 1].end_of_row = true;
