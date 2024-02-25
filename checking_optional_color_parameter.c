@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 13:56:23 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 16:36:10 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/25 17:01:03 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,10 @@ static int	*long_color_conversion(char *color_string, int *rgb_bytes,
 
 	f_nibble_index = 0;
 	s_nibble_index = 1;
-	ft_printf("%s\n", color_string);
 	while (f_nibble_index != 6 && s_nibble_index != 7)
 	{
 		rgb_bytes[b_index] = hex_converter(color_string[s_nibble_index]) + (16
 				* hex_converter(color_string[f_nibble_index]));
-		ft_printf("%s\n", color_string);
 		f_nibble_index += 2;
 		s_nibble_index += 2;
 		b_index++;
