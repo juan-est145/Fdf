@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/26 18:16:04 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:41:54 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ typedef enum e_error_msg
 	INVALID_ARGC,
 	INVALID_FILE_EXTENSION,
 	FAILURE_TO_OPEN_FILE,
-	MALLOC_ERROR
+	MALLOC_ERROR,
+	MLX_INIT_FAILURE
 }							t_error_msg;
 
 typedef struct s_map_line_read

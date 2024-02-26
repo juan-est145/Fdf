@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 19:10:47 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 19:30:38 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:42:49 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,7 @@ void	print_error_msg(t_error_msg type_of_error)
 		ft_printf("Couldn't open file, ensure that the path is correct\n");
 	else if (type_of_error == MALLOC_ERROR)
 		ft_printf("Error allocating memmory, exiting program\n");
+	else if (type_of_error == MLX_INIT_FAILURE)
+		ft_printf("Could not load MLX instance, exiting program\n");
 	exit(1);
 }
