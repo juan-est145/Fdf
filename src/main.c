@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:44:36 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 20:13:45 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/26 16:52:20 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,16 @@
 #include "../Ultimate_Libft/libft.h"
 #include "fdf.h"
 
-void	ft_leaks(void)
+/*void	ft_leaks(void)
 {
 	system("leaks -q fdf");
 }
+atexit(ft_leaks);*/
 
 static bool	ft_parse_url(char *url);
-static void	second_tester(t_map_data *map_data); // Erase later
 
 int	main(int argc, char *argv[])
 {
-	atexit(ft_leaks);
 	t_coord		**coord;
 	t_map_data	*map_data;
 
@@ -41,7 +40,6 @@ int	main(int argc, char *argv[])
 	}
 	map_data->height = load_matrix(argv[1], &map_data, &coord);
 	map_data->map = coord;
-	second_tester(map_data);
 	destroy_map_data(coord, &map_data);
 	return (0);
 }
@@ -57,7 +55,8 @@ static bool	ft_parse_url(char *url)
 	return (true);
 }
 
-static void	second_tester(t_map_data *map_data)
+// static void	second_tester(t_map_data *map_data); // Erase later
+/*static void	second_tester(t_map_data *map_data)
 {
 	unsigned int	x;
 	unsigned int	y;
@@ -77,7 +76,7 @@ static void	second_tester(t_map_data *map_data)
 		else
 			x++;
 	}
-}
+}*/
 
 /*(void)argc;
 (void)argv;
