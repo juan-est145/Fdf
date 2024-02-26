@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 20:34:28 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:16:04 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void						print_error_msg(t_error_msg type_of_error);
 unsigned int				load_matrix(char *path, t_map_data **map_data,
 								t_coord ***map);
 void						check_for_colors(char *matrix_string, t_coord *map);
+void						input_to_screen(t_map_data **map_data);
 
 // Auxilary functions for my different structs
 void						add_line_node_to_list(t_map_line_read **head,

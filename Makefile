@@ -10,6 +10,7 @@ $(SRC_PATH)/load_matrix.c\
 $(SRC_PATH)/struct_utils.c\
 $(SRC_PATH)/checking_optional_color_parameter.c\
 $(SRC_PATH)/struct_utils2.c\
+$(SRC_PATH)/input_to_screen.c\
 
 OBJS = $(SCRS:.c=.o)
 

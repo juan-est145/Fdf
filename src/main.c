@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:44:36 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/26 16:52:20 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/26 18:18:23 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	main(int argc, char *argv[])
 	}
 	map_data->height = load_matrix(argv[1], &map_data, &coord);
 	map_data->map = coord;
-	destroy_map_data(coord, &map_data);
+	input_to_screen(&map_data);
 	return (0);
 }
 
