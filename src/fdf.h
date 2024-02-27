@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/26 18:41:54 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:46:56 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ typedef struct s_map_data
 {
 	t_coord					**map;
 	unsigned int			height;
+	unsigned int			width;
 }							t_map_data;
 
 void						print_error_msg(t_error_msg type_of_error);

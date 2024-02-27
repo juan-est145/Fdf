@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/20 19:44:36 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/26 18:52:17 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/27 18:55:18 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 /*void	ft_leaks(void)
 {
 	system("leaks -q fdf");
-}*/
-//atexit(ft_leaks);
+}
+atexit(ft_leaks);*/
 
-static bool	ft_parse_url(char *url);
+static bool			ft_parse_url(char *url);
+static unsigned int	get_width(t_coord **coord);
 
 int	main(int argc, char *argv[])
 {
@@ -40,6 +41,7 @@ int	main(int argc, char *argv[])
 	}
 	map_data->height = load_matrix(argv[1], &map_data, &coord);
 	map_data->map = coord;
+	map_data->width = get_width(map_data->map);
 	input_to_screen(&map_data);
 	return (0);
 }
@@ -53,6 +55,16 @@ static bool	ft_parse_url(char *url)
 		|| extension[4] != '\0')
 		return (false);
 	return (true);
+}
+
+static unsigned int	get_width(t_coord **coord)
+{
+	unsigned int	x;
+
+	x = 0;
+	while (coord[0][x].end_of_row != true)
+		x++;
+	return (x + 1);
 }
 
 // static void	second_tester(t_map_data *map_data); // Erase later
