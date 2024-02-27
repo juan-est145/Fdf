@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/27 13:31:55 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/27 17:07:13 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img)
 	while (y < (*map_data)->height)
 	{
 		if ((*map_data)->map[y][x].color_present == false)
-			mlx_put_pixel(*img, x, y, 255);
+			mlx_put_pixel(*img, x, y, get_rgba(255, 255, 255, 255 * 3));
 		else if ((*map_data)->map[y][x].color_present == true)
 			mlx_put_pixel(*img, x, y, (*map_data)->map[y][x].color);
 		if ((*map_data)->map[y][x].end_of_row == true)
