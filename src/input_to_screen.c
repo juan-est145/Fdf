@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/27 19:15:40 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/02/27 19:32:59 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img)
 	unsigned int	y_offset;
 
 	y = 0;
+	x = 0;
 	x_offset = (*img)->width / (*map_data)->width;
 	y_offset = (*img)->height / (*map_data)->height;
 	while (y < (*map_data)->height)
