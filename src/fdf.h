@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/06 19:59:30 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/06 20:26:01 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 # include <fcntl.h>
 # include <math.h>
 # include <stdio.h>
+# ifndef ZOOM
+#  define ZOOM 20
+# endif
 
 typedef enum e_error_msg
 {
