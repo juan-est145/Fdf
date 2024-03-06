@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/06 20:26:01 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/06 22:07:20 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,12 @@
 # include <stdio.h>
 # ifndef ZOOM
 #  define ZOOM 20
+# endif
+# ifndef IMG_WIDTH
+#  define IMG_WIDTH 1920
+# endif
+# ifndef IMG_HEIGHT
+#  define IMG_HEIGHT 1080
 # endif
 
 typedef enum e_error_msg
@@ -79,6 +85,8 @@ void						destroy_map_data(t_coord **map,
 								t_map_data **map_data);
 float						calculate_increase(float delta,
 								unsigned int x_delta, unsigned int y_delta);
+t_bresenham_coord			point_data(unsigned int x0, unsigned int x1,
+								unsigned int y0, unsigned int y1);
 
 // Functions for colors
 int							get_rgba(int r, int g, int b, int a);
