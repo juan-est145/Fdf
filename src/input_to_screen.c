@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/06 20:00:20 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/06 20:23:53 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include "fdf.h"
 
 static void	put_pixels(t_map_data **map_data, mlx_image_t **img);
+static void	bresenham(t_bresenham_coord coord, t_map_data **map_data, mlx_image_t **img);
 
 void	input_to_screen(t_map_data **map_data)
 {
@@ -41,35 +42,45 @@ void	input_to_screen(t_map_data **map_data)
 
 static void	put_pixels(t_map_data **map_data, mlx_image_t **img)
 {
-	t_bresenham_coord	bresenham;
+	t_bresenham_coord	bresenham_s;
 
-	bresenham.x = 0;
-	bresenham.y = 0;
-	while (bresenham.y < (*map_data)->height)
+	bresenham_s.x = 0;
+	bresenham_s.y = 0;
+	bresenham_s.x_next = bresenham_s.x + 1;
+	bresenham_s.y_next = bresenham_s.y + 1;
+	while (bresenham_s.y < (*map_data)->height)
 	{
-		if ((*map_data)->map[bresenham.y][bresenham.x].color_present == false)
-			mlx_put_pixel(*img, x * x_offset, y * y_offset, get_rgba(255, 255,
-					255, 255 * 3));
-		else if ((*map_data)->map[y][x].color_present == true)
-			mlx_put_pixel(*img, x * x_offset, y * y_offset,
-				(*map_data)->map[y][x].color);
-		if ((*map_data)->map[y][x].end_of_row == true)
+		bresenham(bresenham_s, map_data, img);
+		if ((*map_data)->map[bresenham_s.y][bresenham_s.x].end_of_row == true)
 		{
-			bresenham.x = 0;
-			bresenham.y++;
+			bresenham_s.x = 0;
+			bresenham_s.x_next = bresenham_s.x + 1;
+			bresenham_s.y++;
+			bresenham_s.y_next = bresenham_s.y + 1;
 		}
 		else
-			bresenham.x++;
+		{
+			bresenham_s.x++;
+			bresenham_s.x_next = bresenham_s.x + 1;
+		}		
 	}
 }
 
-static void	bresenham(t_bresenham_coord *coord, t_map_data **map_data)
+static void	bresenham(t_bresenham_coord coord, t_map_data **map_data, mlx_image_t **img)
 {
 	float	x_increase;
 	float	y_increase;
 	
-	coord->delta_x = coord->x_next - coord->x;
-	coord->delta_y = coord->y_next - coord->y;
-	x_increase = calculate_increase(coord->delta_x, coord->delta_x, coord->delta_y);
-	y_increase = calculate_increase(coord->delta_y, coord->delta_x, coord->delta_y);
+	(void)map_data;
+	coord.delta_x = /*abs*/(coord.x_next - coord.x);
+	coord.delta_y = /*abs*/(coord.y_next - coord.y);
+	x_increase = calculate_increase(coord.delta_x, coord.delta_x, coord.delta_y);
+	y_increase = calculate_increase(coord.delta_y, coord.delta_x, coord.delta_y);
+	while (coord.x - coord.x_next != 0 || coord.y - coord.y_next != 0)
+	{
+		mlx_put_pixel(*img, coord.x, coord.y, 0xffffff);
+		coord.x += x_increase;
+		coord.y += y_increase;
+	}
+	
 }
