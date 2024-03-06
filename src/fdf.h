@@ -6,13 +6,14 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/27 18:46:56 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/06 16:07:37 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FDF_H
 # define FDF_H
 # include <fcntl.h>
+# include <math.h>
 # include <stdio.h>
 
 typedef enum e_error_msg
@@ -46,6 +47,14 @@ typedef struct s_map_data
 	unsigned int			height;
 	unsigned int			width;
 }							t_map_data;
+
+typedef struct s_bresenham_coord
+{
+	unsigned int			x0;
+	unsigned int			y0;
+	unsigned int			x1;
+	unsigned int			y1;
+}							t_bresenham_coord;
 
 void						print_error_msg(t_error_msg type_of_error);
 unsigned int				load_matrix(char *path, t_map_data **map_data,
