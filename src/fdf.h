@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/06 16:07:37 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:59:30 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,12 @@ typedef struct s_map_data
 
 typedef struct s_bresenham_coord
 {
-	unsigned int			x0;
-	unsigned int			y0;
-	unsigned int			x1;
-	unsigned int			y1;
+	unsigned int			x;
+	unsigned int			y;
+	unsigned int			x_next;
+	unsigned int			y_next;
+	unsigned int			delta_y;
+	unsigned int			delta_x;
 }							t_bresenham_coord;
 
 void						print_error_msg(t_error_msg type_of_error);
@@ -72,6 +74,8 @@ void						malloc_error(t_map_line_read **head, t_coord **map,
 unsigned int				get_x_length(t_map_line_read *node);
 void						destroy_map_data(t_coord **map,
 								t_map_data **map_data);
+float						calculate_increase(float delta,
+								unsigned int x_delta, unsigned int y_delta);
 
 // Functions for colors
 int							get_rgba(int r, int g, int b, int a);

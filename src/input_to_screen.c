@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/06 16:08:16 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/06 20:00:20 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,13 @@ void	input_to_screen(t_map_data **map_data)
 
 static void	put_pixels(t_map_data **map_data, mlx_image_t **img)
 {
-	unsigned int	y;
-	unsigned int	x;
-	unsigned int	x_offset;
-	unsigned int	y_offset;
+	t_bresenham_coord	bresenham;
 
-	y = 0;
-	x = 0;
-	x_offset = (*img)->width / (*map_data)->width;
-	y_offset = (*img)->height / (*map_data)->height;
-	while (y < (*map_data)->height)
+	bresenham.x = 0;
+	bresenham.y = 0;
+	while (bresenham.y < (*map_data)->height)
 	{
-		if ((*map_data)->map[y][x].color_present == false)
+		if ((*map_data)->map[bresenham.y][bresenham.x].color_present == false)
 			mlx_put_pixel(*img, x * x_offset, y * y_offset, get_rgba(255, 255,
 					255, 255 * 3));
 		else if ((*map_data)->map[y][x].color_present == true)
@@ -60,14 +55,21 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img)
 				(*map_data)->map[y][x].color);
 		if ((*map_data)->map[y][x].end_of_row == true)
 		{
-			x = 0;
-			y++;
+			bresenham.x = 0;
+			bresenham.y++;
 		}
 		else
-			x++;
+			bresenham.x++;
 	}
 }
 
 static void	bresenham(t_bresenham_coord *coord, t_map_data **map_data)
 {
+	float	x_increase;
+	float	y_increase;
+	
+	coord->delta_x = coord->x_next - coord->x;
+	coord->delta_y = coord->y_next - coord->y;
+	x_increase = calculate_increase(coord->delta_x, coord->delta_x, coord->delta_y);
+	y_increase = calculate_increase(coord->delta_y, coord->delta_x, coord->delta_y);
 }

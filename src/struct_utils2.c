@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:29:46 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 20:25:45 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/06 19:59:12 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,12 @@ void	destroy_map_data(t_coord **map, t_map_data **map_data)
 		free(map);
 	if (*map_data != NULL)
 		free(*map_data);
+}
+
+float	calculate_increase(float delta, unsigned int x_delta, unsigned int y_delta)
+{
+	if (x_delta > y_delta)
+		return (delta / x_delta);
+	else
+		return (delta / y_delta);
 }
