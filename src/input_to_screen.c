@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/07 15:43:16 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:24:54 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 
 static void	put_pixels(t_map_data **map_data, mlx_image_t **img);
 static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
-				mlx_image_t **img);
+				mlx_image_t **img, int color);
+static int	select_color(t_map_data **map_data, unsigned int x, unsigned int y);
 
 void	input_to_screen(t_map_data **map_data)
 {
@@ -51,9 +52,11 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img)
 	while (y < (*map_data)->height)
 	{
 		if (x < (*map_data)->width - 1)
-			bresenham(point_data(x, x + 1, y, y), map_data, img);
+			bresenham(point_data(x, x + 1, y, y), map_data, img,
+				select_color(map_data, x, y));
 		if (y < (*map_data)->height - 1)
-			bresenham(point_data(x, x, y, y + 1), map_data, img);
+			bresenham(point_data(x, x, y, y + 1), map_data, img,
+				select_color(map_data, x, y));
 		if ((*map_data)->map[y][x].end_of_row == true)
 		{
 			x = 0;
@@ -64,8 +67,16 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img)
 	}
 }
 
+static int	select_color(t_map_data **map_data, unsigned int x, unsigned int y)
+{
+	if ((*map_data)->map[y][x].color_present == true)
+		return ((*map_data)->map[y][x].color);
+	else
+		return (get_rgba(255, 255, 255, 255));
+}
+
 static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
-		mlx_image_t **img)
+		mlx_image_t **img, int color)
 {
 	float	x_increase;
 	float	y_increase;
@@ -78,7 +89,7 @@ static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 			coord.delta_y);
 	while (coord.x - coord.x_next != 0 || coord.y - coord.y_next != 0)
 	{
-		mlx_put_pixel(*img, coord.x, coord.y, get_rgba(255, 255, 255, 255));
+		mlx_put_pixel(*img, coord.x, coord.y, color);
 		coord.x += x_increase;
 		coord.y += y_increase;
 	}
