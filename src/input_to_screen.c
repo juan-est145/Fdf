@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/07 14:35:14 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:27:24 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,10 +78,7 @@ static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 			coord.delta_y);
 	while (coord.x - coord.x_next != 0 || coord.y - coord.y_next != 0)
 	{
-		if (x_increase == 1)
-			mlx_put_pixel(*img, coord.x, coord.y, get_rgba(0, 255, 0, 255));
-		else if (y_increase == 1)
-			mlx_put_pixel(*img, coord.x, coord.y, get_rgba(255, 0, 0, 255));
+		mlx_put_pixel(*img, coord.x, coord.y, get_rgba(255, 255, 255, 255));
 		coord.x += x_increase;
 		coord.y += y_increase;
 	}
