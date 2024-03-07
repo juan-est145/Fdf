@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:29:46 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/07 14:47:45 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:01:07 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,23 +72,23 @@ t_bresenham_coord	point_data(unsigned int x0, unsigned int x1,
 t_bresenham_coord	zoom_multplier(t_bresenham_coord coord,
 		t_map_data **map_data)
 {
-	unsigned int	zoom_height;
-	unsigned int	zoom_width;
+	unsigned int	zoom;
+	unsigned int	map_coord_smallest;
 
-	zoom_height = 0;
-	zoom_width = 0;
-	while (((*map_data)->height) * zoom_height < IMG_HEIGHT)
-		zoom_height++;
-	if (zoom_height != 0)
-		zoom_height -= 1;
-	while (((*map_data)->width) * zoom_width < IMG_HEIGHT)
-		zoom_width++;
-	if (zoom_width != 0)
-		zoom_width -= 1;
-	coord.x *= zoom_width;
-	coord.x_next *= zoom_width;
-	coord.y *= zoom_height;
-	coord.y_next *= zoom_height;
+	zoom = 0;
+	map_coord_smallest = 0;
+	if ((*map_data)->height < (*map_data)->width)
+		map_coord_smallest = (*map_data)->width;
+	else
+		map_coord_smallest = (*map_data)->height;
+	while ((map_coord_smallest) * zoom < IMG_HEIGHT)
+		zoom++;
+	if (zoom != 0)
+		zoom -= 1;
+	coord.x *= zoom;
+	coord.x_next *= zoom;
+	coord.y *= zoom;
+	coord.y_next *= zoom;
 	coord.delta_x = (coord.x_next - coord.x);
 	coord.delta_y = (coord.y_next - coord.y);
 	return (coord);
