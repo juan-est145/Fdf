@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:29:46 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/06 22:05:53 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:44:25 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,30 @@ t_bresenham_coord	point_data(unsigned int x0, unsigned int x1,
 {
 	t_bresenham_coord	data;
 
-	data.x = x0 * ZOOM;
-	data.x_next = x1 * ZOOM;
-	data.y = y0 * ZOOM;
-	data.y_next = y1 * ZOOM;
+	data.x = x0;
+	data.x_next = x1;
+	data.y = y0;
+	data.y_next = y1;
 	data.delta_x = (data.x_next - data.x);
 	data.delta_y = (data.y_next - data.y);
 	return (data);
+}
+
+t_bresenham_coord	zoom_multplier(t_bresenham_coord coord,
+		t_map_data **map_data)
+{
+	unsigned int	zoom;
+
+	zoom = 0;
+	while (((*map_data)->height) * zoom < IMG_HEIGHT)
+		zoom++;
+	if (zoom != 0)
+		zoom -= 1;
+	coord.x *= zoom;
+	coord.x_next *= zoom;
+	coord.y *= zoom;
+	coord.y_next *= zoom;
+	coord.delta_x = (coord.x_next - coord.x);
+	coord.delta_y = (coord.y_next - coord.y);
+	return (coord);
 }
