@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/07 18:24:54 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:32:45 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,17 +46,17 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img)
 {
 	unsigned int	x;
 	unsigned int	y;
+	int				color;
 
 	x = 0;
 	y = 0;
 	while (y < (*map_data)->height)
 	{
+		color = select_color(map_data, x, y);
 		if (x < (*map_data)->width - 1)
-			bresenham(point_data(x, x + 1, y, y), map_data, img,
-				select_color(map_data, x, y));
+			bresenham(point_data(x, x + 1, y, y), map_data, img, color);
 		if (y < (*map_data)->height - 1)
-			bresenham(point_data(x, x, y, y + 1), map_data, img,
-				select_color(map_data, x, y));
+			bresenham(point_data(x, x, y, y + 1), map_data, img, color);
 		if ((*map_data)->map[y][x].end_of_row == true)
 		{
 			x = 0;
