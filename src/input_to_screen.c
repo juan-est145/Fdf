@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/06 22:02:03 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/07 12:20:43 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 #include "fdf.h"
 
 static void	put_pixels(t_map_data **map_data, mlx_image_t **img);
-static void	bresenham(t_bresenham_coord coord, t_map_data **map_data, mlx_image_t **img);
+static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
+				mlx_image_t **img);
 
 void	input_to_screen(t_map_data **map_data)
 {
@@ -59,23 +60,25 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img)
 			y++;
 		}
 		else
-			x++;	
+			x++;
 	}
 }
 
-static void	bresenham(t_bresenham_coord coord, t_map_data **map_data, mlx_image_t **img)
+static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
+		mlx_image_t **img)
 {
 	float	x_increase;
 	float	y_increase;
-	
+
 	(void)map_data;
-	x_increase = calculate_increase(coord.delta_x, coord.delta_x, coord.delta_y);
-	y_increase = calculate_increase(coord.delta_y, coord.delta_x, coord.delta_y);
+	x_increase = calculate_increase(coord.delta_x, coord.delta_x,
+			coord.delta_y);
+	y_increase = calculate_increase(coord.delta_y, coord.delta_x,
+			coord.delta_y);
 	while (coord.x - coord.x_next != 0 || coord.y - coord.y_next != 0)
 	{
 		mlx_put_pixel(*img, coord.x, coord.y, 0xffffff);
 		coord.x += x_increase;
 		coord.y += y_increase;
 	}
-	
 }
