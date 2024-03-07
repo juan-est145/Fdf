@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:29:46 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/07 15:01:07 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/07 15:42:49 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ t_bresenham_coord	point_data(unsigned int x0, unsigned int x1,
 	return (data);
 }
 
-t_bresenham_coord	zoom_multplier(t_bresenham_coord coord,
+t_bresenham_coord	zoom_multiplier(t_bresenham_coord coord,
 		t_map_data **map_data)
 {
 	unsigned int	zoom;
