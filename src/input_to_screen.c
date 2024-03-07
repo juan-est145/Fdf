@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/07 18:32:45 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/07 18:51:58 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 	float	x_increase;
 	float	y_increase;
 
-	(void)map_data;
 	coord = zoom_multiplier(coord, map_data);
 	x_increase = calculate_increase(coord.delta_x, coord.delta_x,
 			coord.delta_y);
