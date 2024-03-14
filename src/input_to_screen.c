@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/14 17:13:12 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:53:25 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,22 +87,17 @@ static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 
 	coord = zoom_multiplier(coord, map_data);
 	isometric_projection(&coord, map_data);
+	/*The commented lines below "solve" the problem of the split drawing, but it is not consistent
+	coord.x += IMG_WIDTH/2;
+	coord.x_next += IMG_WIDTH/2;
+	coord.y += IMG_HEIGHT/2;
+	coord.y_next += IMG_HEIGHT/2;*/
 	coord.delta_x = (coord.x_next - coord.x);
 	coord.delta_y = (coord.y_next - coord.y);
 	if (fabsf(coord.delta_x) > fabsf(coord.delta_y))
 		slope_less_than_one(coord, img, color);
 	else
 		slope_bigger_than_one(coord, img, color);
-	/*x_increase = calculate_increase(fabsf(coord.delta_x), fabsf(coord.delta_x), //Added fabsf to both calculate increase
-			fabsf(coord.delta_y));
-	y_increase = calculate_increase(fabsf(coord.delta_y), fabsf(coord.delta_x),
-			fabsf(coord.delta_y));
-	while ((int)(coord.x - coord.x_next) != 0 || (int)(coord.y - coord.y_next) != 0)
-	{
-		mlx_put_pixel(*img, coord.x, coord.y, color);
-		coord.x += x_increase;
-		coord.y += y_increase;
-	}*/
 }
 
 static void	isometric_projection(t_bresenham_coord *coord,
