@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:29:46 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/14 16:11:13 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/14 17:12:52 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,9 +89,9 @@ t_bresenham_coord	zoom_multiplier(t_bresenham_coord coord,
 		zoom++;
 	if (zoom != 0)
 		zoom -= 1;
-	coord.x *= zoom; //Change 10 for zoom later in all cases
-	coord.x_next *= zoom;
-	coord.y *= zoom;
-	coord.y_next *= zoom;
+	coord.x *= 100; //Change 10 for zoom later in all cases
+	coord.x_next *= 100;
+	coord.y *= 100;
+	coord.y_next *= 100;
 	return (coord);
 }
