@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/14 16:31:22 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/14 16:32:32 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,6 @@ static void slope_less_than_one(t_bresenham_coord coord, mlx_image_t **img, int 
 			p = p + 2 * fabsf(coord.delta_y) - 2 * fabsf(coord.delta_x);
 		}
 		mlx_put_pixel(*img, coord.x, coord.y, color);
-		i++;
 	}
 }
 
@@ -179,6 +178,5 @@ static void slope_bigger_than_one(t_bresenham_coord coord, mlx_image_t **img, in
 			p = p + 2 * fabsf(coord.delta_x) - 2 * fabsf(coord.delta_y);
 		}
 		mlx_put_pixel(*img, coord.x, coord.y, color);
-		i++;
 	}
 }
