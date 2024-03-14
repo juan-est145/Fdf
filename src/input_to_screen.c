@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/14 19:04:38 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:29:26 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,9 +82,6 @@ static int	select_color(t_map_data **map_data, unsigned int x, unsigned int y)
 static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 		mlx_image_t **img, int color)
 {
-	//float	x_increase;
-	//float	y_increase;
-
 	coord = zoom_multiplier(coord, map_data);
 	isometric_projection(&coord, map_data);
 	/*The commented lines below "solve" the problem of the split drawing, but it is not consistent*/
