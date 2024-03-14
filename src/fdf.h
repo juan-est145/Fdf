@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/07 15:43:04 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/07 19:41:22 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,16 @@ typedef struct s_map_data
 
 typedef struct s_bresenham_coord
 {
-	unsigned int			x;
-	unsigned int			y;
-	unsigned int			x_next;
-	unsigned int			y_next;
-	unsigned int			delta_y;
-	unsigned int			delta_x;
+	float					x;
+	float					y;
+	float					x_next;
+	float					y_next;
+	float					delta_y;
+	float					delta_x;
+	unsigned int			map_x;
+	unsigned int			map_y;
+	unsigned int			map_x_next;
+	unsigned int			map_y_next;
 }							t_bresenham_coord;
 
 void						print_error_msg(t_error_msg type_of_error);

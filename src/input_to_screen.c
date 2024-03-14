@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/07 18:51:58 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:39:50 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img);
 static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 				mlx_image_t **img, int color);
 static int	select_color(t_map_data **map_data, unsigned int x, unsigned int y);
+static void	isometric_projection(t_bresenham_coord *coord,
+				t_map_data **map_data);
 
 void	input_to_screen(t_map_data **map_data)
 {
@@ -82,14 +84,37 @@ static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 	float	y_increase;
 
 	coord = zoom_multiplier(coord, map_data);
+	isometric_projection(&coord, map_data);
+	coord.delta_x = (coord.x_next - coord.x);
+	coord.delta_y = (coord.y_next - coord.y);
 	x_increase = calculate_increase(coord.delta_x, coord.delta_x,
 			coord.delta_y);
 	y_increase = calculate_increase(coord.delta_y, coord.delta_x,
 			coord.delta_y);
-	while (coord.x - coord.x_next != 0 || coord.y - coord.y_next != 0)
+	while ((int)(coord.x - coord.x_next) != 0 || (int)(coord.y - coord.y_next) != 0)
 	{
 		mlx_put_pixel(*img, coord.x, coord.y, color);
 		coord.x += x_increase;
 		coord.y += y_increase;
 	}
+}
+
+static void	isometric_projection(t_bresenham_coord *coord,
+		t_map_data **map_data)
+{
+	unsigned int	tmp;
+	int				z_value;
+	int				z_next_value;
+
+	z_value = (*map_data)->map[coord->map_x][coord->map_y].value_of_z;
+	z_next_value = (*map_data)->map[coord->map_x_next][coord->map_y_next].value_of_z;
+	tmp = coord->x;
+	coord->x = (tmp - coord->y) * cos(0.523599);
+	coord->y = (tmp + coord->y) * sin(0.523599) - z_value;
+	tmp = coord->x_next;
+	coord->x_next = (tmp - coord->y_next) * cos(0.523599);
+	coord->y_next = (tmp + coord->y_next) * sin(0.523599) - z_next_value;
+
+	//One of the problems I seem to have is that I do not add a zoom to the z value before doing the isometric
+	//projection
 }
