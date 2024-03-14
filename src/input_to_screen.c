@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/14 13:39:50 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/14 14:10:03 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,10 +87,10 @@ static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 	isometric_projection(&coord, map_data);
 	coord.delta_x = (coord.x_next - coord.x);
 	coord.delta_y = (coord.y_next - coord.y);
-	x_increase = calculate_increase(coord.delta_x, coord.delta_x,
-			coord.delta_y);
-	y_increase = calculate_increase(coord.delta_y, coord.delta_x,
-			coord.delta_y);
+	x_increase = calculate_increase(fabsf(coord.delta_x), fabsf(coord.delta_x), //Added fabsf to both calculate increase
+			fabsf(coord.delta_y));
+	y_increase = calculate_increase(fabsf(coord.delta_y), fabsf(coord.delta_x),
+			fabsf(coord.delta_y));
 	while ((int)(coord.x - coord.x_next) != 0 || (int)(coord.y - coord.y_next) != 0)
 	{
 		mlx_put_pixel(*img, coord.x, coord.y, color);

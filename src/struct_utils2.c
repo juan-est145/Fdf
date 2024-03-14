@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:29:46 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/14 13:25:54 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/14 13:46:29 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,9 @@ t_bresenham_coord	point_data(unsigned int x0, unsigned int x1,
 	t_bresenham_coord	data;
 
 	data.map_x = x0;
-	data.map_y = x0;
+	data.map_y = y0;
 	data.map_x_next = x1;
-	data.map_y_next = x1;
+	data.map_y_next = y1;
 	data.x = (float)x0;
 	data.x_next = (float)x1;
 	data.y = (float)y0;
