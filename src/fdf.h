@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/07 19:41:22 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:03:13 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ typedef struct s_map_data
 	t_coord					**map;
 	unsigned int			height;
 	unsigned int			width;
+	unsigned int			zoom;
 }							t_map_data;
 
 typedef struct s_bresenham_coord

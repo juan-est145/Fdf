@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/14 18:06:13 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/14 19:04:38 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,8 +109,8 @@ static void	isometric_projection(t_bresenham_coord *coord,
 
 	z_value = (*map_data)->map[coord->map_x][coord->map_y].value_of_z;
 	z_next_value = (*map_data)->map[coord->map_x_next][coord->map_y_next].value_of_z;
-	z_value *= 100; //New change to see if it affects isometric
-	z_next_value *= 100; //New change to see if it affects isometric
+	z_value *= (*map_data)->zoom; //New change to see if it affects isometric
+	z_next_value *= (*map_data)->zoom; //New change to see if it affects isometric
 	tmp = coord->x;
 	coord->x = (tmp - coord->y) * cos(0.523599);
 	coord->y = (tmp + coord->y) * sin(0.523599) - z_value;
