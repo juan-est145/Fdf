@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:29:46 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/14 19:04:13 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:41:14 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,6 @@ void	destroy_map_data(t_coord **map, t_map_data **map_data)
 		free(map);
 	if (*map_data != NULL)
 		free(*map_data);
-}
-
-float	calculate_increase(float delta, unsigned int x_delta,
-		unsigned int y_delta)
-{
-	if (x_delta > y_delta)
-		return (delta / x_delta);
-	else
-		return (delta / y_delta);
 }
 
 t_bresenham_coord	point_data(unsigned int x0, unsigned int x1,

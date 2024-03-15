@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/14 19:03:13 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:41:33 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,6 @@ void						malloc_error(t_map_line_read **head, t_coord **map,
 unsigned int				get_x_length(t_map_line_read *node);
 void						destroy_map_data(t_coord **map,
 								t_map_data **map_data);
-float						calculate_increase(float delta,
-								unsigned int x_delta, unsigned int y_delta);
 t_bresenham_coord			point_data(unsigned int x0, unsigned int x1,
 								unsigned int y0, unsigned int y1);
 t_bresenham_coord			zoom_multiplier(t_bresenham_coord coord,
