@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/15 15:50:40 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:48:31 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	input_to_screen(t_map_data **map_data)
 		destroy_map_data((*map_data)->map, map_data);
 		print_error_msg(MLX_INIT_FAILURE);
 	}
+	get_pixels_coords(map_data);
 	put_pixels(map_data, &img);
 	mlx_loop(mlx_start);
 	mlx_terminate(mlx_start);

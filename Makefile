@@ -11,6 +11,7 @@ $(SRC_PATH)/struct_utils.c\
 $(SRC_PATH)/checking_optional_color_parameter.c\
 $(SRC_PATH)/struct_utils2.c\
 $(SRC_PATH)/input_to_screen.c\
+$(SRC_PATH)/get_pixels_coordinates.c\
 
 OBJS = $(SCRS:.c=.o)
 

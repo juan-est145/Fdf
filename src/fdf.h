@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/15 12:41:33 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/15 16:48:10 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ typedef struct s_coord
 	bool					color_present;
 	int						color;
 	bool					end_of_row;
+	int						pixel_x;
+	int						pixel_y;
 }							t_coord;
 
 typedef struct s_map_data
@@ -74,6 +76,7 @@ unsigned int				load_matrix(char *path, t_map_data **map_data,
 								t_coord ***map);
 void						check_for_colors(char *matrix_string, t_coord *map);
 void						input_to_screen(t_map_data **map_data);
+void						get_pixels_coords(t_map_data **map_data);
 
 // Auxilary functions for my different structs
 void						add_line_node_to_list(t_map_line_read **head,
