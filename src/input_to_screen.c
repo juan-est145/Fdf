@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/15 14:41:08 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/15 15:26:19 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,10 @@ static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 	coord = zoom_multiplier(coord, map_data);
 	isometric_projection(&coord, map_data);
 	/*The commented lines below "solve" the problem of the split drawing, but it is not consistent*/
-	/*coord.x += IMG_WIDTH/2;
+	coord.x += IMG_WIDTH/2;
 	coord.x_next += IMG_WIDTH/2;
 	coord.y += IMG_HEIGHT/2;
-	coord.y_next += IMG_HEIGHT/2;*/
+	coord.y_next += IMG_HEIGHT/2;
 	coord.delta_x = (coord.x_next - coord.x);
 	coord.delta_y = (coord.y_next - coord.y);
 	if (fabsf(coord.delta_x) > fabsf(coord.delta_y))
@@ -104,10 +104,10 @@ static void	isometric_projection(t_bresenham_coord *coord,
 	int				z_value;
 	int				z_next_value;
 
-	z_value = (*map_data)->map[coord->map_x][coord->map_y].value_of_z;
-	z_next_value = (*map_data)->map[coord->map_x_next][coord->map_y_next].value_of_z;
-	/*z_value *= (*map_data)->zoom; //New change to see if it affects isometric
-	z_next_value *= (*map_data)->zoom; //New change to see if it affects isometric*/
+	z_value = (*map_data)->map[coord->map_y][coord->map_x].value_of_z;
+	z_next_value = (*map_data)->map[coord->map_y_next][coord->map_x_next].value_of_z;
+	z_value *= (*map_data)->zoom; //New change to see if it affects isometric
+	z_next_value *= (*map_data)->zoom; //New change to see if it affects isometric
 	tmp = coord->x;
 	coord->x = (tmp - coord->y) * cos(0.523599);
 	coord->y = (tmp + coord->y) * sin(0.523599) - z_value;
