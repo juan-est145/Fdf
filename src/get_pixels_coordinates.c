@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:30:55 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/15 17:08:15 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:14:19 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,10 @@ void    get_pixels_coords(t_map_data **map_data)
         while (x < (*map_data)->height)
         {
             isometric_projection_pixel((*map_data)->map, x, y);
-            printf("%i|%i", (*map_data)->map[y][x].pixel_x, (*map_data)->map[y][x].pixel_y);
-            printf("\n");
             x++;
         }
         y++;
     }
-    exit(0);
 }
 
 static void isometric_projection_pixel(t_coord **coord, unsigned int x, unsigned int y)
