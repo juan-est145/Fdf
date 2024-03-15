@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/15 16:48:31 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/15 17:47:37 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img);
 static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 				mlx_image_t **img, int color);
 static int	select_color(t_map_data **map_data, unsigned int x, unsigned int y);
-static void	isometric_projection(t_bresenham_coord *coord,
-				t_map_data **map_data);
+/*static void	isometric_projection(t_bresenham_coord *coord,
+				t_map_data **map_data);*/
 static void slope_less_than_one(t_bresenham_coord coord, mlx_image_t **img, int color);
 static void slope_bigger_than_one(t_bresenham_coord coord, mlx_image_t **img, int color);
 
@@ -59,9 +59,9 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img)
 	{
 		color = select_color(map_data, x, y);
 		if (x < (*map_data)->width - 1)
-			bresenham(point_data(x, x + 1, y, y), map_data, img, color);
+			bresenham(point_data((*map_data)->map[x][y].pixel_x, (*map_data)->map[x + 1][y + 1].pixel_x, (*map_data)->map[x][y].pixel_y, (*map_data)->map[x][y].pixel_y), map_data, img, color);
 		if (y < (*map_data)->height - 1)
-			bresenham(point_data(x, x, y, y + 1), map_data, img, color);
+			bresenham(point_data((*map_data)->map[x][y].pixel_x, (*map_data)->map[x][y].pixel_x, (*map_data)->map[x][y].pixel_y, (*map_data)->map[x][y + 1].pixel_y), map_data, img, color);
 		if ((*map_data)->map[y][x].end_of_row == true)
 		{
 			x = 0;
@@ -84,7 +84,7 @@ static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 		mlx_image_t **img, int color)
 {
 	coord = zoom_multiplier(coord, map_data);
-	isometric_projection(&coord, map_data);
+	//isometric_projection(&coord, map_data);
 	/*The commented lines below "solve" the problem of the split drawing, but it is not consistent*/
 	/*coord.x += IMG_WIDTH/2;
 	coord.x_next += IMG_WIDTH/2;
@@ -98,7 +98,7 @@ static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 		slope_bigger_than_one(coord, img, color);
 }
 
-static void	isometric_projection(t_bresenham_coord *coord,
+/*static void	isometric_projection(t_bresenham_coord *coord,
 		t_map_data **map_data)
 {
 	unsigned int	tmp;
@@ -107,8 +107,8 @@ static void	isometric_projection(t_bresenham_coord *coord,
 
 	z_value = (*map_data)->map[coord->map_y][coord->map_x].value_of_z;
 	z_next_value = (*map_data)->map[coord->map_y_next][coord->map_x_next].value_of_z;
-	/*z_value *= (*map_data)->zoom; //New change to see if it affects isometric
-	z_next_value *= (*map_data)->zoom; //New change to see if it affects isometric*/
+	z_value *= (*map_data)->zoom; //New change to see if it affects isometric
+	z_next_value *= (*map_data)->zoom; //New change to see if it affects isometric
 	tmp = coord->x;
 	coord->x = (tmp - coord->y) * cos(0.523599);
 	coord->y = (tmp + coord->y) * sin(0.523599) - z_value;
@@ -118,7 +118,7 @@ static void	isometric_projection(t_bresenham_coord *coord,
 
 	//One of the problems I seem to have is that I do not add a zoom to the z value before doing the isometric
 	//projection
-}
+}*/
 
 static void slope_less_than_one(t_bresenham_coord coord, mlx_image_t **img, int color)
 {
