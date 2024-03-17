@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/17 14:51:02 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/17 18:40:21 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static int	select_color(t_map_data **map_data, unsigned int x, unsigned int y)
 static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 		mlx_image_t **img, int color)
 {
-	/*coord = zoom_multiplier(coord, map_data);*/
+	coord = zoom_multiplier(coord, map_data);
 	isometric_projection(&coord, map_data);
 	coord.x += IMG_WIDTH/2;
 	coord.x_next += IMG_WIDTH/2;
@@ -105,8 +105,8 @@ static void	isometric_projection(t_bresenham_coord *coord,
 
 	z_value = (*map_data)->map[coord->map_y][coord->map_x].value_of_z;
 	z_next_value = (*map_data)->map[coord->map_y_next][coord->map_x_next].value_of_z;
-	//z_value *= (*map_data)->zoom; //New change to see if it affects isometric
-	//z_next_value *= (*map_data)->zoom; //New change to see if it affects isometric
+	z_value *= (*map_data)->zoom;
+	z_next_value *= (*map_data)->zoom;
 	tmp = coord->x;
 	coord->x = (tmp - coord->y) * cos(0.523599);
 	coord->y = (tmp + coord->y) * sin(0.523599) - z_value;

@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:29:46 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/17 13:27:45 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/17 18:46:50 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,26 +63,51 @@ t_bresenham_coord	point_data(int x0, int x1, int y0, int y1)
 	return (data);
 }
 
-/*t_bresenham_coord	zoom_multiplier(t_bresenham_coord coord,
+t_bresenham_coord	zoom_multiplier(t_bresenham_coord coord,
 		t_map_data **map_data)
 {
-	unsigned int	zoom;
-	unsigned int	map_coord_smallest;
-
-	zoom = 0;
-	map_coord_smallest = 0;
-	if ((*map_data)->height < (*map_data)->width)
-		map_coord_smallest = (*map_data)->width;
-	else
-		map_coord_smallest = (*map_data)->height;
-	while ((map_coord_smallest) * zoom < IMG_HEIGHT - (IMG_HEIGHT / 2))
-		zoom++;
-	if (zoom != 0)
-		zoom -= 1;
-	coord.x *= zoom; //Change 10 for zoom later in all cases
+	static int 	zoom = 1;
+	unsigned int	x;
+	unsigned int	y;
+	int				max_y_value;
+	int				coords[3];
+	static bool			calculated_already = false;
+	
+	y = 0;
+	max_y_value = 0;
+	if (calculated_already == false)
+	{
+		calculated_already = true;
+		while (y < (*map_data)->height)
+		{
+			x = 0;
+			while (x < (*map_data)->width)
+			{
+				if ((x + y) * sin(0.523599) - (*map_data)->map[y][x].value_of_z > max_y_value)
+				{
+					max_y_value = (x + y) * sin(0.523599) - (*map_data)->map[y][x].value_of_z;
+					coords[0] = x;
+					coords[1] = y;
+					coords[2] = (*map_data)->map[y][x].value_of_z;
+				}
+				x++;
+			}
+			y++;
+		}
+		while (max_y_value < (540/*IMG_HEIGHT / 2*/))
+		{
+			max_y_value = ((coords[0] * zoom) + (coords[1] * zoom)) * sin(0.523599) - (coords[2] * zoom);
+			zoom++;
+			if (max_y_value > (540))
+				break;
+		}
+		if (zoom != 0)
+			zoom -= 2;
+	}
+	coord.x *= zoom;
 	coord.x_next *= zoom;
 	coord.y *= zoom;
 	coord.y_next *= zoom;
 	(*map_data)->zoom = zoom;
 	return (coord);
-}*/
+}
