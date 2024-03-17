@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/17 14:54:58 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/17 19:05:50 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #  define IMG_WIDTH 1920
 # endif
 # ifndef IMG_HEIGHT
-#  define IMG_HEIGHT 1080
+#  define IMG_HEIGHT 1920
 # endif
 
 typedef enum e_error_msg
