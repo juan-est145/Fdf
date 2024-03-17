@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:29:46 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/17 18:46:50 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/17 18:59:36 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,8 +101,12 @@ t_bresenham_coord	zoom_multiplier(t_bresenham_coord coord,
 			if (max_y_value > (540))
 				break;
 		}
-		if (zoom != 0)
-			zoom -= 2;
+		if (zoom != 0) //Add condition to check that if zoom is equal to 0, send an error.
+		{
+			zoom = (zoom - 2) - (zoom/2);
+			if (zoom < 1)
+				zoom = 1;
+		}
 	}
 	coord.x *= zoom;
 	coord.x_next *= zoom;
