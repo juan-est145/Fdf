@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 16:30:55 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/17 13:24:45 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/17 14:12:30 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@
 
 static void isometric_projection_pixel(t_coord **coord, unsigned int x, unsigned int y);
 static void find_offset(t_map_data **map_data);
-static void apply_offset(t_map_data **map_data, int x_offset, int y_offset);
 
 void    get_pixels_coords(t_map_data **map_data)
 {
@@ -24,10 +23,10 @@ void    get_pixels_coords(t_map_data **map_data)
     unsigned int    y;
 
     y = 0;
-    while (y < (*map_data)->width)
+    while (y < (*map_data)->height)
     {
         x = 0;
-        while (x < (*map_data)->height)
+        while (x < (*map_data)->width)
         {
             isometric_projection_pixel((*map_data)->map, x, y);
             x++;
@@ -39,55 +38,30 @@ void    get_pixels_coords(t_map_data **map_data)
 
 static void isometric_projection_pixel(t_coord **coord, unsigned int x, unsigned int y)
 {
-    int pixelx; //Erase later
-    int pixely; //Erase later
-    pixelx = coord[y][x].pixel_x = ((int)((x) - (y))) * cos(0.523599);
-    pixely = coord[y][x].pixel_y = ((int)((x) + (y))) * sin(0.523599) - coord[y][x].value_of_z;
-    (void)pixelx; //Erase later
-    (void)pixely; //Erase later
+    coord[y][x].pixel_x = ((int)x - (int)y) * cos(0.523599);
+    coord[y][x].pixel_y = ((int)x + (int)y) * sin(0.523599) - coord[y][x].value_of_z;
 }
 
 static void find_offset(t_map_data **map_data)
 {
-    int biggest_x_negative;
-    int biggest_y_negative;
     unsigned int    x;
     unsigned int    y;
 
-    biggest_x_negative = 0;
-    biggest_y_negative = 0;
+    (*map_data)->x_offset = 0;
+    (*map_data)->y_offset = 0;
     y = 0;
     while (y < (*map_data)->height)
     {
         x = 0;
         while (x < (*map_data)->width)
         {
-            if ((*map_data)->map[y][x].pixel_x <  biggest_x_negative)
-                biggest_x_negative = (*map_data)->map[y][x].pixel_x;
-            if (((*map_data)->map[y][x].pixel_y <  biggest_y_negative))
-                biggest_y_negative = (*map_data)->map[y][x].pixel_y;
+            if ((*map_data)->map[y][x].pixel_x <  (*map_data)->x_offset)
+                (*map_data)->x_offset = abs((*map_data)->map[y][x].pixel_x);
+            if (((*map_data)->map[y][x].pixel_y <  (*map_data)->y_offset))
+                (*map_data)->y_offset = abs((*map_data)->map[y][x].pixel_y);
             x++;
         }
         y++;
     }
-    apply_offset(map_data, biggest_x_negative, biggest_y_negative);
 }
 
-static void apply_offset(t_map_data **map_data, int x_offset, int y_offset)
-{
-    unsigned int    x;
-    unsigned int    y;
-    
-    y = 0;
-    while (y < (*map_data)->height)
-    {
-        x = 0;
-        while (x < (*map_data)->width)
-        {
-            (*map_data)->map[y][x].pixel_x += abs(x_offset);
-            (*map_data)->map[y][x].pixel_y += abs(y_offset);
-            x++;
-        }
-        y++;
-    }
-}
