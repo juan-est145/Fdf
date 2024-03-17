@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:29:46 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/17 18:59:36 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/17 19:37:18 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,8 +98,8 @@ t_bresenham_coord	zoom_multiplier(t_bresenham_coord coord,
 		{
 			max_y_value = ((coords[0] * zoom) + (coords[1] * zoom)) * sin(0.523599) - (coords[2] * zoom);
 			zoom++;
-			if (max_y_value > (540))
-				break;
+			/*if (max_y_value > (540))
+				break;*/
 		}
 		if (zoom != 0) //Add condition to check that if zoom is equal to 0, send an error.
 		{
