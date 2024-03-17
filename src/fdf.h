@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/17 14:01:35 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/17 14:50:18 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,18 +55,16 @@ typedef struct s_map_data
 	unsigned int			height;
 	unsigned int			width;
 	unsigned int			zoom;
-	int						x_offset;
-	int						y_offset;
 }							t_map_data;
 
 typedef struct s_bresenham_coord
 {
-	int					x;
-	int					y;
-	int					x_next;
-	int					y_next;
-	int					delta_y;
-	int					delta_x;
+	int						x;
+	int						y;
+	int						x_next;
+	int						y_next;
+	int						delta_y;
+	int						delta_x;
 	unsigned int			map_x;
 	unsigned int			map_y;
 	unsigned int			map_x_next;
@@ -78,7 +76,6 @@ unsigned int				load_matrix(char *path, t_map_data **map_data,
 								t_coord ***map);
 void						check_for_colors(char *matrix_string, t_coord *map);
 void						input_to_screen(t_map_data **map_data);
-void						get_pixels_coords(t_map_data **map_data);
 
 // Auxilary functions for my different structs
 void						add_line_node_to_list(t_map_line_read **head,

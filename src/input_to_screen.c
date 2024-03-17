@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/17 14:04:31 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/17 14:51:02 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img);
 static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 				mlx_image_t **img, int color);
 static int	select_color(t_map_data **map_data, unsigned int x, unsigned int y);
-/*static void	isometric_projection(t_bresenham_coord *coord,
-				t_map_data **map_data);*/
+static void	isometric_projection(t_bresenham_coord *coord,
+				t_map_data **map_data);
 static void slope_less_than_one(t_bresenham_coord coord, mlx_image_t **img, int color);
 static void slope_bigger_than_one(t_bresenham_coord coord, mlx_image_t **img, int color);
 
@@ -40,7 +40,6 @@ void	input_to_screen(t_map_data **map_data)
 		destroy_map_data((*map_data)->map, map_data);
 		print_error_msg(MLX_INIT_FAILURE);
 	}
-	get_pixels_coords(map_data);
 	put_pixels(map_data, &img);
 	mlx_loop(mlx_start);
 	mlx_terminate(mlx_start);
@@ -58,14 +57,10 @@ static void	put_pixels(t_map_data **map_data, mlx_image_t **img)
 	while (y < (*map_data)->height)
 	{
 		color = select_color(map_data, x, y);
-		/*if (x < (*map_data)->width - 1)
+		if (x < (*map_data)->width - 1)
 			bresenham(point_data(x, x + 1, y, y), map_data, img, color);
 		if (y < (*map_data)->height - 1)
-			bresenham(point_data(x, x, y, y + 1), map_data, img, color);*/
-		if (x < (*map_data)->width - 1)
-			bresenham(point_data((*map_data)->map[y][x].pixel_x,(*map_data)->map[y][x + 1].pixel_x, (*map_data)->map[y][x].pixel_y, (*map_data)->map[y][x].pixel_y), map_data, img, color);
-		if (y < (*map_data)->height - 1)
-			bresenham(point_data((*map_data)->map[y][x].pixel_x, (*map_data)->map[y][x].pixel_x, (*map_data)->map[y][x].pixel_y, (*map_data)->map[y + 1][x].pixel_y), map_data, img, color);
+			bresenham(point_data(x, x, y, y + 1), map_data, img, color);
 		if ((*map_data)->map[y][x].end_of_row == true)
 		{
 			x = 0;
@@ -87,18 +82,12 @@ static int	select_color(t_map_data **map_data, unsigned int x, unsigned int y)
 static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 		mlx_image_t **img, int color)
 {
-	(void)map_data;
 	/*coord = zoom_multiplier(coord, map_data);*/
-	//isometric_projection(&coord, map_data);
-	/*The commented lines below "solve" the problem of the split drawing, but it is not consistent*/
+	isometric_projection(&coord, map_data);
 	coord.x += IMG_WIDTH/2;
 	coord.x_next += IMG_WIDTH/2;
 	coord.y += IMG_HEIGHT/2;
 	coord.y_next += IMG_HEIGHT/2;
-	/*coord.x += (*map_data)->x_offset;
-	coord.x_next += (*map_data)->x_offset;
-	coord.y += (*map_data)->y_offset;
-	coord.y_next += (*map_data)->y_offset;*/
 	coord.delta_x = (coord.x_next - coord.x);
 	coord.delta_y = (coord.y_next - coord.y);
 	if (abs(coord.delta_x) > abs(coord.delta_y))
@@ -107,10 +96,10 @@ static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 		slope_bigger_than_one(coord, img, color);
 }
 
-/*static void	isometric_projection(t_bresenham_coord *coord,
+static void	isometric_projection(t_bresenham_coord *coord,
 		t_map_data **map_data)
 {
-	unsigned int	tmp;
+	int	tmp;
 	int				z_value;
 	int				z_next_value;
 
@@ -124,10 +113,7 @@ static void	bresenham(t_bresenham_coord coord, t_map_data **map_data,
 	tmp = coord->x_next;
 	coord->x_next = (tmp - coord->y_next) * cos(0.523599);
 	coord->y_next = (tmp + coord->y_next) * sin(0.523599) - z_next_value;
-
-	//One of the problems I seem to have is that I do not add a zoom to the z value before doing the isometric
-	//projection
-}*/
+}
 
 static void slope_less_than_one(t_bresenham_coord coord, mlx_image_t **img, int color)
 {
