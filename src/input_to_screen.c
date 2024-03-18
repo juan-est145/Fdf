@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/18 12:33:27 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:11:54 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,25 @@ static int	select_color(t_map_data **map_data, unsigned int x, unsigned int y);
 
 void	input_to_screen(t_map_data **map_data)
 {
-	mlx_t		*mlx_start;
 	mlx_image_t	*img;
 
-	mlx_start = mlx_init(IMG_WIDTH, IMG_HEIGHT, "Fdf", true);
-	if (mlx_start == NULL)
+	(*map_data)->mlx_start = mlx_init(IMG_WIDTH, IMG_HEIGHT, "Fdf", true);
+	if ((*map_data)->mlx_start == NULL)
 	{
 		destroy_map_data((*map_data)->map, map_data);
 		print_error_msg(MLX_INIT_FAILURE);
 	}
-	img = mlx_new_image(mlx_start, IMG_WIDTH, IMG_HEIGHT);
-	if (img == NULL || (mlx_image_to_window(mlx_start, img, 0, 0) < 0))
+	img = mlx_new_image((*map_data)->mlx_start, IMG_WIDTH, IMG_HEIGHT);
+	if (img == NULL || (mlx_image_to_window((*map_data)->mlx_start, img, 0,
+				0) < 0))
 	{
 		destroy_map_data((*map_data)->map, map_data);
+		mlx_terminate((*map_data)->mlx_start);
 		print_error_msg(MLX_INIT_FAILURE);
 	}
 	put_pixels(map_data, &img);
-	mlx_loop(mlx_start);
-	mlx_terminate(mlx_start);
+	mlx_loop((*map_data)->mlx_start);
+	mlx_terminate((*map_data)->mlx_start);
 	destroy_map_data((*map_data)->map, map_data);
 }
 

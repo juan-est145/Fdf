@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/22 14:31:09 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/18 12:23:59 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:10:11 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,9 @@
 # ifndef IMG_HEIGHT
 #  define IMG_HEIGHT 1920
 # endif
+# ifndef CEILING_VALUE
+#  define CEILING_VALUE 540
+# endif
 
 typedef enum e_error_msg
 {
@@ -28,7 +31,8 @@ typedef enum e_error_msg
 	INVALID_FILE_EXTENSION,
 	FAILURE_TO_OPEN_FILE,
 	MALLOC_ERROR,
-	MLX_INIT_FAILURE
+	MLX_INIT_FAILURE,
+	TOO_MUCH_HEIGHT
 }							t_error_msg;
 
 typedef struct s_map_line_read
@@ -53,6 +57,7 @@ typedef struct s_map_data
 	unsigned int			height;
 	unsigned int			width;
 	unsigned int			zoom;
+	mlx_t					*mlx_start;
 }							t_map_data;
 
 typedef struct s_bresenham_coord
@@ -94,8 +99,4 @@ t_bresenham_coord			zoom_multiplier(t_bresenham_coord coord,
 
 // Functions for colors
 int							get_rgba(int r, int g, int b, int a);
-int							get_r(int rgba);
-int							get_g(int rgba);
-int							get_b(int rgba);
-int							get_a(int rgba);
 #endif
