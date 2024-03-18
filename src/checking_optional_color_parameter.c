@@ -6,12 +6,12 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 13:56:23 by juestrel          #+#    #+#             */
-/*   Updated: 2024/02/25 20:33:42 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/18 13:34:34 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../MLX42/include/MLX42/MLX42.h"
-#include "../Ultimate_Libft/libft.h"
+#include "../libft/libft.h"
 #include "fdf.h"
 
 static int	*color_conversion(char *color_string);

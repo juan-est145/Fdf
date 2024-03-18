@@ -1,3 +1,3 @@
-[submodule "Ultimate_Libft"]
-	path = Ultimate_Libft
-	url = https://github.com/juan-est145/Ultimate_Libft
+[submodule "libft"]
+	path = libft
+	url = https://github.com/juan-est145/libft

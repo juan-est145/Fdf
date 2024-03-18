@@ -1,4 +1,4 @@
-LIBFT_PATH = Ultimate_Libft
+LIBFT_PATH = libft
 SRC_PATH = src
 
 NAME = fdf
@@ -21,7 +21,7 @@ HEADER = $(SRC_PATH)/fdf.h
 COMPILER = $(CC)
 
 CFLAGS = -Wall -Werror -Wextra
-LIBRARY_FLAG = -LUltimate_Libft -lft -LMLX42 -lmlx42 -ldl -lglfw -I include -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
+LIBRARY_FLAG = -L$(LIBFT_PATH) -lft -LMLX42 -lmlx42 -ldl -lglfw -I include -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
 EXEC-NAME-FLAG = -o
 
 RM = rm -rf
