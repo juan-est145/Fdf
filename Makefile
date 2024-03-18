@@ -26,9 +26,12 @@ EXEC-NAME-FLAG = -o
 
 RM = rm -rf
 
+GIT_SUBMODULES = git submodule init && git submodule update
+
 all: make-library $(NAME)
 
 make-library:
+	$(GIT_SUBMODULES)
 	$(MAKE) -C $(LIBFT_PATH)
 
 make-library-debug:
