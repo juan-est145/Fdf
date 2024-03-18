@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/26 17:41:27 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/18 13:34:34 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:22:28 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 static void	put_pixels(t_map_data **map_data, mlx_image_t **img);
 static int	select_color(t_map_data **map_data, unsigned int x, unsigned int y);
+static void	close_window_key(void *param);
 
 void	input_to_screen(t_map_data **map_data)
 {
@@ -36,6 +37,7 @@ void	input_to_screen(t_map_data **map_data)
 		print_error_msg(MLX_INIT_FAILURE);
 	}
 	put_pixels(map_data, &img);
+	mlx_loop_hook((*map_data)->mlx_start, &close_window_key, *map_data);
 	mlx_loop((*map_data)->mlx_start);
 	mlx_terminate((*map_data)->mlx_start);
 	destroy_map_data((*map_data)->map, map_data);
@@ -72,4 +74,13 @@ static int	select_color(t_map_data **map_data, unsigned int x, unsigned int y)
 		return ((*map_data)->map[y][x].color);
 	else
 		return (get_rgba(255, 255, 255, 255));
+}
+
+static void	close_window_key(void *param)
+{
+	t_map_data	*map_data;
+
+	map_data = (t_map_data *)param;
+	if (mlx_is_key_down(map_data->mlx_start, MLX_KEY_ESCAPE))
+		mlx_close_window(map_data->mlx_start);
 }

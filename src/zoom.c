@@ -6,7 +6,7 @@
 /*   By: juestrel <juestrel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/18 12:49:57 by juestrel          #+#    #+#             */
-/*   Updated: 2024/03/18 13:34:34 by juestrel         ###   ########.fr       */
+/*   Updated: 2024/03/18 14:24:51 by juestrel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,6 @@ static int	get_max_y_value(t_map_data **map_data, int *coord_x, int *coord_y,
 static void	map_too_high(t_map_data **map_data)
 {
 	destroy_map_data((*map_data)->map, map_data);
-	mlx_terminate((*map_data)->mlx_start);
+	mlx_close_window((*map_data)->mlx_start);
 	print_error_msg(TOO_MUCH_HEIGHT);
 }
