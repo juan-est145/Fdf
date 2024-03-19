@@ -21,7 +21,7 @@ HEADER = $(SRC_PATH)/fdf.h
 COMPILER = $(CC)
 
 CFLAGS = -Wall -Werror -Wextra
-LIBRARY_FLAG = -L$(LIBFT_PATH) -lft -LMLX42 -lmlx42 -ldl -lglfw -I include -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
+LIBRARY_FLAG = -L$(LIBFT_PATH) -lft -LMLX42/build -lmlx42 -ldl -lglfw -I include -lglfw -L "/Users/$(USER)/.brew/opt/glfw/lib/" -pthread -lm
 EXEC-NAME-FLAG = -o
 
 RM = rm -rf
@@ -33,6 +33,7 @@ all: make-library $(NAME)
 make-library:
 	$(GIT_SUBMODULES)
 	$(MAKE) -C $(LIBFT_PATH)
+	cd MLX42 && cmake -B build && cmake --build build -j4
 
 make-library-debug:
 	$(MAKE) -C $(LIBFT_PATH) debug
