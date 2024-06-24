@@ -55,3 +55,7 @@ Run the executable
   ./fdf test_maps/*Whatever map you want*
 ```
 
+To delete the .o files and the executable
+```bash
+  make fclean
+```
