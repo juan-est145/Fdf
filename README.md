@@ -6,9 +6,7 @@ For example, passing the pikachu.fdf file as an argument to the program will cre
 
 <img width="452" alt="Screen Shot 2024-03-19 at 4 43 05 PM" src="https://github.com/juan-est145/Fdf/assets/128648875/6988b207-910d-4da7-b95d-b69ca6ddb708">
 
-This project is only supposed to work on MacOS. In order to compile it first make sure that you have installed the neccesary dependencies needed for the graphical library to work. You can find them here:
-(https://github.com/codam-coding-college/MLX42).
-
+This project has been developed for MacOS, but it should also work with Linux too (only Debian based distributions have been tested).
 You can find all of the project details inside the subject pdf. Also, you can use your own maps if you want, just make sure to stick to the requirements listed in the subject pdf, that the rows of the map have the same lenght and that the file has a .fdf extension.
 
 If you are a fellow student at 42, DO NOT COPY ANYTHING FROM THIS REPOSITORY THAT 
